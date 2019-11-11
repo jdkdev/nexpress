@@ -17,7 +17,7 @@ var escapeHtml = require('./escape-html')
 var onFinished = require('./on-finished')
 var parseUrl = require('./parseurl')
 var statuses = require('./statuses')
-// var unpipe = require('unpipe')
+var {unpipe} = require('./js-utils')
 
 /**
  * Module variables.
@@ -333,23 +333,8 @@ function send (req, res, status, headers, message) {
     return
   }
 
-  // moded from https://github.com/stream-utils/unpipe/blob/master/index.js
- let _unpipe = function(stream) {
-  if (typeof stream.unpipe === 'function') {
-    // new-style
-    stream.unpipe()
-    return
-  }
-
-  let listeners = (stream.listeners('close') || [])
-  let filtered = listeners.filter(listener => {
-     return ! (['cleanup','onclose'].includes(listener.name))
-  })
-
-  filtered.forEach((listener) => listener.call(stream))
-}
   // unpipe everything from the request
-  _unpipe(req)
+  unpipe(req)
 
   // flush the request
   onFinished(req, write)

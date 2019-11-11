@@ -18,7 +18,6 @@ var EventEmitter = require('events').EventEmitter;
 var debug = require('../depends/debug')('connect:dispatcher');
 var finalhandler = require('../depends/finalhandler');
 var parseUrl = require('../depends/parseurl');
-// var merge = require('utils-merge');
 
 /**
  * Module exports.
@@ -40,16 +39,7 @@ var defer = typeof setImmediate === 'function'
   ? setImmediate
   : function(fn){ process.nextTick(fn.bind.apply(fn, arguments)) }
 
-//  var _merge = function(a,b) {
-//       if (a && b) {
-//         for (var key in b) {
-//         a[key] = b[key];
-//         }
-//     }
-//     return a;
-//   }
-
-  var _merge2 = function(a,b) {
+  var merge = function(a,b) {
       let merged = Object.assign(a, b)
       return merged
   }
@@ -62,8 +52,8 @@ var defer = typeof setImmediate === 'function'
 
 function createServer() {
   function app(req, res, next){ app.handle(req, res, next); }
-  _merge2(app, proto);
-  _merge2(app, EventEmitter.prototype);
+  merge(app, proto);
+  merge(app, EventEmitter.prototype);
   app.route = '/';
   app.stack = [];
   return app;

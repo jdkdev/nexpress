@@ -1,0 +1,50 @@
+### vars
+@port = 3000
+@localhost = http://localhost:{{port}}
+@contentType = application/json
+
+###
+POST {{localhost}}
+content-type: {{contentType}}
+
+{
+    "email": "jordan+18@knight.works",
+    "password": "test",
+    "site": "cloud.knight.works"
+}
+####
+POST {{localhost}}/login
+content-type: {{contentType}}
+
+{
+    "email": "jordan+14@knight.works",
+    "password": "test"
+}
+
+###
+POST {{localhost}}/login
+content-type: application/json
+
+{
+    "email": "jordan+18@knight.works",
+    "password": "test"
+}
+
+###
+### Refresh
+POST {{localhost}}/refresh
+content-type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QGVtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJEJJQVVLRmJCakk2dGxHQVFxVTNHNnViQUNLS2tTZWkyUGNxRlZESE1acmU2VEJtekUwOGpTIiwiaWF0IjoxNTcyNzIzMzM2fQ.H94OYXkcQKEsaYP4m549g47ch5VfJA_1v2RtU-_JsMs"
+}
+
+### Refresh
+POST {{localhost}}/logout
+content-type: application/json
+
+{
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJ0ZXN0QGVtYWlsLmNvbSIsInBhc3N3b3JkIjoiJDJiJDEwJEJJQVVLRmJCakk2dGxHQVFxVTNHNnViQUNLS2tTZWkyUGNxRlZESE1acmU2VEJtekUwOGpTIiwiaWF0IjoxNTcyNzIzMzM2fQ.H94OYXkcQKEsaYP4m549g47ch5VfJA_1v2RtU-_JsMs"
+}
+
+###

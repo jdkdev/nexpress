@@ -1,7 +1,8 @@
-var connect = require('../local_modules/nexpress');
+// var nexpress = require('../local_modules/connect');
+var nexpress = require('../local_modules/express');
 var http = require('http');
 
-var app = connect();
+var app = nexpress();
 
 // gzip/deflate outgoing responses
 // var compression = require('compression');
@@ -13,14 +14,20 @@ var app = connect();
 //     keys: ['secret1', 'secret2']
 // }));
 
-// // parse urlencoded request bodies into req.body
-// var bodyParser = require('body-parser');
-// app.use(bodyParser.urlencoded({extended: false}));
+// parse urlencoded request bodies into req.body
+var bodyParser = require('../local_modules/depends/body-parser');
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
 
 // respond to all requests
 app.use(function(req, res){
-  res.end('Hello from Nexpress!\n');
+    console.log(req.body)
+  res.end('then end');
 });
+
+// app.post('/register', (req, res) => {
+//     console.log(req.body)
+// })
 
 //create node.js http server and listen on port
 http.createServer(app).listen(3000);
