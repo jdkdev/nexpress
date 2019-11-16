@@ -4,7 +4,7 @@
 @contentType = application/json
 
 ###
-POST {{localhost}}
+POST {{localhost}}/register
 content-type: {{contentType}}
 
 {

@@ -20,14 +20,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
 // respond to all requests
-app.use(function(req, res){
-    console.log(req.body)
-  res.end('then end');
-});
 
-// app.post('/register', (req, res) => {
-//     console.log(req.body)
-// })
+app.post('/register', (req, res) => {
+    console.log(req.body)
+})
 
 //create node.js http server and listen on port
 http.createServer(app).listen(3000);
